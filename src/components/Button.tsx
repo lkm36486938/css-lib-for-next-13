@@ -1,20 +1,20 @@
 "use client";
 
-/** @jsxImportSource @emotion/react */
-import { jsx, css } from "@emotion/react";
+import { useState } from "react";
+import { css } from "../../styled-system/css";
 
-const buttonStyle = css`
-  background-color: blue;
-  color: white;
-`;
+const buttonStyle = (active: boolean) =>
+  css({ backgroundColor: active ? "lightgreen" : "beige", color: "#333" });
 
 const CustomButton = () => {
+  const [active, setActive] = useState<boolean>(false);
+
   const onClick = () => {
-    console.log("onClick");
+    setActive(!active);
   };
 
   return (
-    <button onClick={onClick} css={buttonStyle}>
+    <button onClick={onClick} className={buttonStyle(active)}>
       Hello
     </button>
   );
