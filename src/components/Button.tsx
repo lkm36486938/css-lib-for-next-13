@@ -1,12 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { css } from "../../styled-system/css";
+import { css, cx } from "../../styled-system/css";
 
 const buttonStyle = (active: boolean) =>
   css({ backgroundColor: active ? "lightgreen" : "beige", color: "#333" });
 
-const CustomButton = () => {
+type CustomButtonProps = {
+  cssProps?: string;
+};
+
+const CustomButton = (props: CustomButtonProps) => {
+  const { cssProps } = props;
   const [active, setActive] = useState<boolean>(false);
 
   const onClick = () => {
@@ -14,7 +19,7 @@ const CustomButton = () => {
   };
 
   return (
-    <button onClick={onClick} className={buttonStyle(active)}>
+    <button onClick={onClick} className={cx(buttonStyle(active), cssProps)}>
       Hello
     </button>
   );
